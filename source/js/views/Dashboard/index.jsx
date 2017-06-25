@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { testAction, testAsync } from 'actions/app';
 import Icon from 'components/Global/Icon';
 import bookImg from '../../../assets/img/book2.jpg';
-import  './index.scss'
+import './index.scss';
 
 @connect(state => ({
   asyncData: state.app.get('asyncData'),
