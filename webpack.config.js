@@ -104,17 +104,34 @@ if (isProduction) {
         comments: false,
       },
     }),
-    new ExtractTextPlugin('style-[hash].css')
+    // new ExtractTextPlugin('style-[hash].css')
+    new ExtractTextPlugin('style.css')
   );
 
   // Production rules
   rules.push(
     {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: 'css-loader!postcss-loader!sass-loader',
-      }),
+           use: ExtractTextPlugin.extract({
+               fallback: "style-loader",
+               use: [
+                   {
+                       loader: "css-loader",
+                       options: {
+                           sourceMap: true,
+                             modules: true,
+                             importLoaders: true,
+                             localIdentName: "[name]__[local]___[hash:base64:5]"
+                       }
+                 },
+                 {
+                     loader: "sass-loader",
+                       options: {
+                           sourceMap: true,
+                       }
+                 }
+             ]
+         })
     }
   );
 } else {

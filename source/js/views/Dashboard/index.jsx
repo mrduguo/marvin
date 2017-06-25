@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { testAction, testAsync } from 'actions/app';
 import Icon from 'components/Global/Icon';
 import bookImg from '../../../assets/img/book2.jpg';
+import  './index.scss'
 
 @connect(state => ({
   asyncData: state.app.get('asyncData'),
@@ -59,7 +60,7 @@ export default class Dashboard extends Component {
 
         <h2>Examples</h2>
 
-        <h3>Synchronous action</h3>
+        <h3 styleName='test'>Synchronous action</h3>
         <div className='Example'>
           <p>Counter: { counter }</p>
           <button onClick={ this.handleTestButtonClick }>

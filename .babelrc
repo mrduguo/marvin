@@ -2,7 +2,19 @@
   "plugins": [
     "transform-class-properties",
     "syntax-decorators",
-    "transform-decorators-legacy"
+    "transform-decorators-legacy",
+    [
+      "react-css-modules",
+      {
+        "context": "./src",
+        "generateScopedName": "[local]_[hash:base64:5]",
+        "filetypes": {
+          ".scss": {
+            "syntax": "postcss-scss"
+          }
+        }
+      }
+    ],
   ],
   "presets": [
     ["es2015", { "modules": false }],
