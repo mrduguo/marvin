@@ -48,6 +48,9 @@ const plugins = [
             'ie >= 10',
           ],
         }),
+        require('postcss-modules')({
+          generateScopedName: '[local]_[hash:base64:5]',
+        }),
       ],
       context: sourcePath,
     },
@@ -117,18 +120,12 @@ if (isProduction) {
                use: [
                    {
                        loader: "css-loader",
-                       options: {
-                           sourceMap: true,
-                             modules: true,
-                             importLoaders: true,
-                             localIdentName: "[name]__[local]___[hash:base64:5]"
-                       }
                  },
                  {
+                     loader: "postcss-loader"
+                   },
+                 {
                      loader: "sass-loader",
-                       options: {
-                           sourceMap: true,
-                       }
                  }
              ]
          })

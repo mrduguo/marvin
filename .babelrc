@@ -6,7 +6,6 @@
     [
       "react-css-modules",
       {
-        "context": "./src",
         "generateScopedName": "[local]_[hash:base64:5]",
         "filetypes": {
           ".scss": {
