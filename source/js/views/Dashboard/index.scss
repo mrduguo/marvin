@@ -1,3 +1,9 @@
 .test {
   background: orangered;
 }
+.test2 {
+  background: white;
+}
+:global .test3 {
+  background: red;
+}
