@@ -1,3 +1,35 @@
+== setup
+Download 64-bit windows binary zip https://nodejs.org/en/download/current/
+Extract to C:\dev\bin\node-v8.0.0-win-x64
+        https://github.com/zkat/make-fetch-happen/pull/30/files
+        node-v8.0.0-win-x64\node_modules\npm\node_modules\pacote\node_modules\make-fetch-happen\agent.js:
+             path: proxyUrl.path,
+line 128 +   auth: proxyUrl.auth,
+             ca: opts.ca,		      ca: opts.ca,
+
+export PATH=/c/dev/bin/node-v8.0.0-win-x64:$PATH
+node --version
+npm install -g create-react-app@1.3.1
+cd "C:\dev\src\git"
+create-react-app react-hello-world
+cd react-hello-world
+npm start
+
+== commands
+export PATH=/c/dev/bin/node-v8.0.0-win-x64:$PATH
+node --version
+
+npm install
+npm start
+npm test -- --coverage?
+npm run build
+npm run preview
+npm run serve?
+npm run upgrade
+
+
+
+
 # Marvin ★★
 
 React and Redux, Webpack 2 boilerplate.

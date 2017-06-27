@@ -22,7 +22,7 @@ const plugins = [
   new SpritePlugin(),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
-    filename: 'assets/vendor-[hash].js',
+    filename: 'assets/vendor-[chunkhash].js',
     minChunks(module) {
       const context = module.context;
       return context && context.indexOf('node_modules') >= 0;
@@ -38,6 +38,10 @@ const plugins = [
     template: path.join(sourcePath, 'index.html'),
     path: buildPath,
     filename: 'index.html',
+    minify: {
+      removeAttributeQuotes: true,
+      collapseWhitespace: true,
+    },
   }),
   new webpack.LoaderOptionsPlugin({
     options: {
@@ -67,23 +71,31 @@ const rules = [
     ],
   },
   {
+    test: /\.(png|gif|jpg|svg)$/,
+    include: imgPath,
+    use: [
+      {
+        loader: 'url-loader',
+        options: {
+          limit: 20480,
+          name: 'assets/[name]-[hash].[ext]',
+        },
+      },
+    ],
+  },
+  {
     test: /\.svg$/,
     use: [
       {
         loader: 'svg-sprite-loader',
         options: {
           extract: true,
-          spriteFilename: 'icons-sprite.svg',
+          spriteFilename: 'assets/icons-[hash:20].svg',
         },
       },
       'svgo-loader',
     ],
     include: iconPath,
-  },
-  {
-    test: /\.(png|gif|jpg|svg)$/,
-    include: imgPath,
-    use: 'url-loader?limit=20480&name=assets/[name]-[hash].[ext]',
   },
 ];
 
@@ -107,7 +119,7 @@ if (isProduction) {
         comments: false,
       },
     }),
-    new ExtractTextPlugin('assets/style-[hash].css')
+    new ExtractTextPlugin('assets/style-[chunkhash].css')
   );
 
   // Production rules
@@ -154,7 +166,12 @@ if (isProduction) {
         // 'css-loader?sourceMap',
         'css-loader',
         'postcss-loader',
-        'sass-loader?sourceMap',
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true,
+          },
+        },
       ],
     }
   );
@@ -169,7 +186,7 @@ module.exports = {
   output: {
     path: buildPath,
     publicPath: '/',
-    filename: 'assets/app-[hash].js',
+    filename: 'assets/app-[chunkhash].js',
   },
   module: {
     rules,
