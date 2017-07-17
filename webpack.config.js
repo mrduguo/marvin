@@ -22,7 +22,7 @@ const plugins = [
   new SpritePlugin(),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
-    filename: 'assets/vendor-[chunkhash].js',
+    filename: 'assets/vendor-[hash].js',
     minChunks(module) {
       const context = module.context;
       return context && context.indexOf('node_modules') >= 0;

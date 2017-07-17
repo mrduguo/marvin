@@ -8,6 +8,9 @@ line 128 +   auth: proxyUrl.auth,
              ca: opts.ca,		      ca: opts.ca,
 
 export PATH=/c/dev/bin/node-v8.0.0-win-x64:$PATH
+nvm ls
+nvm use 8.1.3
+
 node --version
 npm install -g create-react-app@1.3.1
 cd "C:\dev\src\git"
@@ -21,10 +24,9 @@ node --version
 
 npm install
 npm start
-npm test -- --coverage?
+# npm test -- --coverage?
 npm run build
 npm run preview
-npm run serve?
 npm run upgrade
 
 
